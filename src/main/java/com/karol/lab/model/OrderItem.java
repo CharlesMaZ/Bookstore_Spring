@@ -1,34 +1,29 @@
 package com.karol.lab.model;
 
 import jakarta.persistence.*;
+import org.aspectj.weaver.ast.Or;
 
 @Entity
-public class CartItem {
+public class OrderItem {
+
+
+    @ManyToOne
+    @JoinColumn(name = "orders")
+    private Order order;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
     @ManyToOne
-    @JoinColumn(name = "cart_id")
-    private Cart cart;
-    @ManyToOne
+    //@ManyToMany
     private Book book;
-
     private int quantity;
 
-    public Long getId() {
-        return id;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Book getBook() {

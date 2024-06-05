@@ -3,7 +3,9 @@ package com.karol.lab.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,12 +24,24 @@ public class User {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
+    //@ManyToMany(fetch = FetchType.EAGER)//wczesniej było ManyToMany
+//    @JoinTable(
+//            name = "user_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
+    /////////////////GPT
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+    ////////////////////////
     private Set<Role> roles = new HashSet<>();
 
     public String getUsername() {
