@@ -6,8 +6,10 @@ import com.karol.lab.model.User;
 import com.karol.lab.repository.CartRepository;
 import com.karol.lab.repository.IBookDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 public class CartService {
     @Autowired
     private CartRepository cartRepository;

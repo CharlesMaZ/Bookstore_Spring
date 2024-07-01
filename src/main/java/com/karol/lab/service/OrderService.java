@@ -3,11 +3,13 @@ package com.karol.lab.service;
 import com.karol.lab.model.*;
 import com.karol.lab.repository.OrderRepository;
 import org.aspectj.weaver.ast.Or;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
 
+@Service
 public class OrderService {
     //todo zapisywanie ksiazki do
     private UserService userService;
