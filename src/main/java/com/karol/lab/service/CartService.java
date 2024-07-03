@@ -29,7 +29,8 @@ public class CartService {
         Cart cart = getCart();
         Book book = bookRepository.getById(bookId).orElseThrow(() ->
                 new RuntimeException("Boook not found"));
-    cart.removeItem(book);
+        cart.addItem(book, quantity);
+        //cart.removeItem(book);
     return saveCart(cart);
     }
 

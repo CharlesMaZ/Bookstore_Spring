@@ -43,4 +43,7 @@ public class Cart {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void addItem(Book book, int quantity) {
+    }
 }

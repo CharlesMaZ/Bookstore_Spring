@@ -22,6 +22,8 @@ public class SecurityConfig  {
                         .requestMatchers("/login", "/register", "/main").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/book/add", "/book/update/**", "/book/delete").hasAuthority("ADMIN") //permitAll()// hasAuthority("ADMIN")
+                        .requestMatchers("/cart/**", "/cart/add", "/cart/add**").hasAuthority("ADMIN")
+                        .requestMatchers("/cart/**", "/cart/add", "/cart/add**").hasAuthority("USER")
 
 
                         .anyRequest().authenticated()
