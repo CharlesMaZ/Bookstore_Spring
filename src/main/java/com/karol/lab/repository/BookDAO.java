@@ -3,6 +3,7 @@ package com.karol.lab.repository;
 import com.karol.lab.model.Book;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,8 +55,16 @@ public class BookDAO implements IBookDAO{
         }
 
     }
+
+    @Transactional
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
+        Book book = getById(id).orElse(null);
+        if (book != null) {
+            entityManager.remove(book);
+        }
 
     }
+
+
 }

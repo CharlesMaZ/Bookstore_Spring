@@ -38,8 +38,9 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void delete(int id) {
-        //this.
-        bookDAO.delete(id);
+    public void delete(Long id) {
+        this.bookDAO.delete(id);
     }
+
+
 }

@@ -11,5 +11,6 @@ public interface IBookService {
     void saveOrUpdate(Book book);
     Optional<Book> getById(Long id);
     List<Book> getAll();
-    void delete(int id);
+
+    void delete(Long id);
 }

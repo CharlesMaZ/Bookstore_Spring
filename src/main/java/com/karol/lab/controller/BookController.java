@@ -45,4 +45,11 @@ public class BookController {
         return "redirect:/main";
     }
 
+
+    @PostMapping("/delete")
+    public String deleteBook(@RequestParam Long id) {
+        bookService.delete(id);
+        return "redirect:/main";
+    }
+
 }
