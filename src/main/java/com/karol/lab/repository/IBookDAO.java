@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface IBookDAO {
-    Optional<Book> getById(int id);
+    Optional<Book> getById(Long id); //Long
 
     List<Book> getAll();
 

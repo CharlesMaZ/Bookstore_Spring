@@ -1,10 +1,7 @@
 package com.karol.lab.repository;
 
 import com.karol.lab.model.Book;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,6 +9,8 @@ import java.util.Optional;
 
 @Repository
 public class BookDAO implements IBookDAO{
+    private final String GET_BY_ID_JPQL= "SELECT b FROM com.karol.lab.model.Book b WHERE b.id = :id";
+
     @PersistenceContext
     private EntityManager entityManager;
     private final String GET_ALL_JPQL = "FROM com.karol.lab.model.Book";
@@ -21,11 +20,22 @@ public class BookDAO implements IBookDAO{
 
     }
 
+    /////
     @Override
-    public Optional<Book> getById(int id) {
-        return Optional.empty();
-    }
+    public Optional<Book> getById(Long id) {
+        TypedQuery<Book> query = entityManager.createQuery(GET_BY_ID_JPQL,Book.class);
+        query.setParameter("id", id);
+        try {
+            return Optional.of(query.getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
 
+
+
+        //return Optional.empty();
+    }
+    ////////
     @Override
     public List<Book> getAll(){
         TypedQuery<Book> query = entityManager.createQuery(GET_ALL_JPQL, Book.class);
@@ -36,9 +46,14 @@ public class BookDAO implements IBookDAO{
 
     @Override
     public void saveOrUpdate(Book book) {
+        System.out.println("BOOOK "+book);
+        if ( getById(book.getId()).isEmpty() ) {
+            entityManager.persist(book);
+        } else {
+            entityManager.merge(book);
+        }
 
     }
-
     @Override
     public void delete(int id) {
 

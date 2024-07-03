@@ -25,7 +25,7 @@ public class CartService {
     }
 
     @Transactional
-    public Cart addToCart(int bookId, int quantity){
+    public Cart addToCart(Long bookId, int quantity){
         Cart cart = getCart();
         Book book = bookRepository.getById(bookId).orElseThrow(() ->
                 new RuntimeException("Boook not found"));
@@ -34,7 +34,7 @@ public class CartService {
     }
 
     @Transactional
-    public Cart removeFromCart(int bookId){
+    public Cart removeFromCart(Long bookId){
         Cart cart = getCart();
         Book book = bookRepository.getById(bookId).orElseThrow(()
         -> new RuntimeException("Book not found"));
