@@ -17,11 +17,13 @@ public class SecurityConfig  {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login", "/register").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        //.defaultSuccessUrl("/home", true)
+                        .successHandler(new CustomLoginSuccessHandler())
                         .permitAll()
                 )
                 .logout(logout -> logout.permitAll());

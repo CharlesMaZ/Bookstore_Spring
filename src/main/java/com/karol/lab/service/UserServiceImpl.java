@@ -37,7 +37,8 @@ public class UserServiceImpl implements UserService {
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setCart(new Cart());
-        Role userRole = roleRepository.findByName("USER").orElseGet(null);
+        //Role userRole = roleRepository.findByName("USER").orElseGet(null);
+        Role userRole = roleRepository.findByName("USER").orElse(null);
         if (userRole != null){
             user.getRoles().add(userRole);
         }
@@ -45,7 +46,7 @@ public class UserServiceImpl implements UserService {
             Role role = new Role();
             role.setName("USER");
             user.getRoles().add(role);
-            userRepository.save(user);
+            //userRepository.save(user);
 
         }
         userRepository.save(user);
