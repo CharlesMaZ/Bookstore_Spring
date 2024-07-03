@@ -17,7 +17,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         if (roles.contains("ADMIN")) {
             response.sendRedirect("/admin/adminpanel");
         } else {
-            response.sendRedirect("/home");
+            response.sendRedirect("/main");
         }
     }
 
