@@ -19,11 +19,12 @@ public class SecurityConfig  {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/main").permitAll()
+                        .requestMatchers("/login", "/register", "/main","cart/add/5/1").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ADMIN")
                         .requestMatchers("/book/add", "/book/update/**", "/book/delete").hasAuthority("ADMIN") //permitAll()// hasAuthority("ADMIN")
                         .requestMatchers("/cart/**", "/cart/add", "/cart/add**").hasAuthority("ADMIN")
-                        .requestMatchers("/cart/**", "/cart/add", "/cart/add**").hasAuthority("USER")
+                        .requestMatchers("/add/**","/cart/**", "/cart/add", "/cart/add**").hasAuthority("USER")
+                        .requestMatchers("/cart/**").hasAnyAuthority("USER", "ADMIN")
 
 
                         .anyRequest().authenticated()
@@ -37,7 +38,6 @@ public class SecurityConfig  {
                 .logout(logout -> logout.permitAll());
         return http.build();
     }
-
 //    @Bean
 //    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 //        http
@@ -54,8 +54,5 @@ public class SecurityConfig  {
         System.out.println(new BCryptPasswordEncoder());
         return new BCryptPasswordEncoder();
     }
-
-
-
 
 }
