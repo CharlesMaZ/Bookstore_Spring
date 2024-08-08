@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="header">
     <meta charset="UTF-8">
     <title>Logowanko</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Księgarnia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 <h1>Logowanie</h1>
 <div th:if="${errorMessage}" th:text="${errorMessage}"></div>
@@ -24,5 +31,6 @@
 </form>
 <a th:href="@{/register}">Zarejestruj się</a>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
