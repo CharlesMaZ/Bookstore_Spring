@@ -4,11 +4,10 @@ import { createRoot } from 'react-dom/client'
 // import './index.css'
 
 
-const currentDate = new Date();
-const hours = currentDate.getHours();
-const minutes = currentDate.getMinutes();
 
-const element = <div>{hours}:{minutes}</div>;
+
+const element = <div></div>;
+
 
 
 createRoot(document.getElementById('root')).render(
